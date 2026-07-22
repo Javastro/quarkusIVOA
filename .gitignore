@@ -1,0 +1,5 @@
+/.gradle/
+/.idea/
+/quarkus-tap-lib/build/
+/quarkus-tap-lib/.gradle/
+
