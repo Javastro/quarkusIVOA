@@ -11,10 +11,3 @@ tasks.withType<Javadoc> {
     dependsOn(tasks.named("jandex"))
 }
 
-
-tasks.register("what"){
-    doLast {
-        println("group is ${project.group}")
-        println("version is ${project.version}")
-    }
-}
