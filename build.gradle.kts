@@ -1,5 +1,5 @@
 plugins {
-    id("org.javastro.build.feature.lifecycle.root")
+    id("org.javastro.build.feature.lifecycle.root-monorepo")
 }
 
 subprojects {
@@ -7,3 +7,4 @@ subprojects {
         group = "org.javastro.ivoa.core.quarkus"
     }
 }
+

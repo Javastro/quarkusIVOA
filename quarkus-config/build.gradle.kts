@@ -6,6 +6,12 @@ plugins {
 dependencies {
     implementation("io.smallrye.config:smallrye-config")
 }
+scmVersion {
+    tag {
+        initialVersion({c,p -> "0.1.0"})
+    }
+}
+
 
 tasks.withType<Javadoc> {
     dependsOn(tasks.named("jandex"))
