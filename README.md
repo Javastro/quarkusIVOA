@@ -6,3 +6,10 @@ These are a set of libraries that provide a framework for implementing IVOA prot
 [![Java CI with Gradle](https://github.com/Javastro/quarkusIVOA/actions/workflows/gradle.yml/badge.svg)](https://github.com/Javastro/quarkusIVOA/actions/workflows/gradle.yml)
 
 [![Publish To Repository](https://github.com/Javastro/quarkusIVOA/actions/workflows/publish.yml/badge.svg)](https://github.com/Javastro/quarkusIVOA/actions/workflows/publish.yml)
+
+## Versions
+
+```kotlin
+implementation("org.javastro.ivoa.core.quarkus:quarkus-tap-lib:0.9.0")
+implementation("org.javastro.ivoa.core.quarkus:quarkus-config:0.1.0")
+```

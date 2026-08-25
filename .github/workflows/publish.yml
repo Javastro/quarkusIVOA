@@ -1,4 +1,4 @@
-name: Publish To Repository
+name: Publish SNAPSHOT To Repository
 
 #this attempts to run only after successful CI build job -will only publish any snapshot versions
 on:
