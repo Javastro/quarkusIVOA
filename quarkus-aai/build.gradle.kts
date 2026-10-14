@@ -4,6 +4,10 @@ plugins {
 }
 
 dependencies {
+    implementation(platform("io.quarkus.platform:quarkus-bom:3.40.1"))
+
+    implementation("io.quarkus:quarkus-arc")
+    implementation ("io.quarkus:quarkus-security")
 }
 scmVersion {
     tag {
