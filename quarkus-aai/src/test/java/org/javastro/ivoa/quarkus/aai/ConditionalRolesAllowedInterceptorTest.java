@@ -14,6 +14,32 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Unit tests for the {@link ConditionalRolesAllowedInterceptor} class, focusing on verifying role-based access control mechanics.
+ * <p>
+ * This test class includes various scenarios to validate that methods secured by role checks behave correctly based on the
+ * caller's roles, configuration, and annotations.
+ * <p>
+ * Fields:
+ * - {@code interceptor}: An instance of {@link ConditionalRolesAllowedInterceptor} under test.
+ * - {@code config}: Configuration mock used to retrieve role-related properties.
+ * - {@code identityInstance}: A mock instance of {@code Instance<SecurityIdentity>}, simulating interactions with the security identity.
+ * - {@code identity}: Mocked {@link SecurityIdentity} object representing the caller's identity.
+ * - {@code context}: Mocked method invocation context used to simulate interactions with the invocation process.
+ * <p>
+ * Methods:
+ * - {@code setUp()}: Prepares the test environment, including initialisation of mocks and required test objects.
+ * - {@code rolesDisabledAllowsInvocationWithoutCheckingIdentity()}: Validates behaviour when role enforcement is disabled.
+ * - {@code anonymousIdentityIsDenied()}: Tests access denial for anonymous identities.
+ * - {@code matchingRoleAllowsInvocation()}: Ensures invocation succeeds when the caller possesses the required role.
+ * - {@code missingMatchingRoleIsDenied()}: Verifies access is denied when no matching role exists.
+ * - {@code anyOneOfMultipleRolesIsSufficient()}: Confirms access is granted when at least one of multiple required roles matches.
+ * - {@code missingConfigurationPropertyIsDenied()}: Ensures access is denied when a required configuration property is missing.
+ * - {@code emptyAnnotationValueAllowsInvocation()}: Validates unrestricted access when the {@code ConditionalRolesAllowed} annotation specifies an empty value.
+ * - {@code classLevelAnnotationIsUsedWhenMethodHasNone()}: Tests role inheritance from a class-level annotation when the method itself lacks an annotation.
+ * - {@code configureMethod(String property)}: Configures mock behaviour for retrieving configuration properties.
+ * - {@code mockIdentityInstance()}: Creates a mock instance of {@code Instance<SecurityIdentity>} for testing purposes.
+ */
 class ConditionalRolesAllowedInterceptorTest {
 
     private ConditionalRolesAllowedInterceptor interceptor;
