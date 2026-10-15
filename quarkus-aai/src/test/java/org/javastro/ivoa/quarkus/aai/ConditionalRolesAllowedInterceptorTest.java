@@ -128,7 +128,7 @@ class ConditionalRolesAllowedInterceptorTest {
     @Test
     void matchingRoleAllowsInvocation() throws Exception {
         configureMethod("viewer");
-        when(identity.hasRole("archive-viewer")).thenReturn(true);
+        when(identity.hasRole("service-viewer")).thenReturn(true);
         when(context.proceed()).thenReturn("success");
 
         assertEquals("success", interceptor.enforceRoles(context));
@@ -149,7 +149,7 @@ class ConditionalRolesAllowedInterceptorTest {
     @Test
     void missingMatchingRoleIsDenied() throws Exception {
         configureMethod("viewer");
-        when(identity.hasRole("archive-viewer")).thenReturn(false);
+        when(identity.hasRole("service-viewer")).thenReturn(false);
 
         assertThrows(
                 ForbiddenException.class,
@@ -176,10 +176,10 @@ class ConditionalRolesAllowedInterceptorTest {
     void anyOneOfMultipleRolesIsSufficient() throws Exception {
         configureMethod("viewer");
         when(config.getOptionalValue("viewer", String.class))
-                .thenReturn(Optional.of("archive-viewer, archive-admin"));
+                .thenReturn(Optional.of("service-viewer, service-admin"));
 
-        when(identity.hasRole("archive-viewer")).thenReturn(false);
-        when(identity.hasRole("archive-admin")).thenReturn(true);
+        when(identity.hasRole("service-viewer")).thenReturn(false);
+        when(identity.hasRole("service-admin")).thenReturn(true);
         when(context.proceed()).thenReturn("success");
 
         assertEquals("success", interceptor.enforceRoles(context));
@@ -258,8 +258,8 @@ class ConditionalRolesAllowedInterceptorTest {
         when(context.getMethod()).thenReturn(
                 ClassAnnotationResource.class.getDeclaredMethod("endpoint"));
         when(config.getOptionalValue("viewer", String.class))
-                .thenReturn(Optional.of("archive-viewer"));
-        when(identity.hasRole("archive-viewer")).thenReturn(true);
+                .thenReturn(Optional.of("service-viewer"));
+        when(identity.hasRole("service-viewer")).thenReturn(true);
         when(context.proceed()).thenReturn("success");
 
         assertEquals("success", interceptor.enforceRoles(context));
@@ -277,7 +277,7 @@ class ConditionalRolesAllowedInterceptorTest {
         when(context.getMethod()).thenReturn(
                 MethodAnnotationResource.class.getDeclaredMethod("endpoint"));
         when(config.getOptionalValue(property, String.class))
-                .thenReturn(Optional.of("archive-viewer"));
+                .thenReturn(Optional.of("service-viewer"));
     }
 
     /**

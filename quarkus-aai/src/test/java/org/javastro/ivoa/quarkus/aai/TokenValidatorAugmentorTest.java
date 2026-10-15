@@ -47,7 +47,7 @@ class TokenValidatorAugmentorTest {
     @BeforeEach
     void setUp() {
         validator = new TokenValidatorAugmentor();
-        validator.expectedClientId = "archive-service";
+        validator.expectedClientId = "test-client";
         validator.securityEnabled = true;
 
         identity = mock(SecurityIdentity.class);
@@ -59,7 +59,7 @@ class TokenValidatorAugmentorTest {
                 .thenReturn(Set.of(tokenCredential));
 
         when(tokenCredential.getToken())
-                .thenReturn(createToken("{\"client_id\":\"archive-service\"}"));
+                .thenReturn(createToken("{\"client_id\":\"test-client\"}"));
 
         previousProfile = System.getProperty("quarkus.profile");
 
@@ -107,10 +107,10 @@ class TokenValidatorAugmentorTest {
      */
     @Test
     void clientIdComparisonIsCaseInsensitiveAndTrimsWhitespace() {
-        validator.expectedClientId = " Archive-Service ";
+        validator.expectedClientId = " Test-Client ";
         when(tokenCredential.getToken())
                 .thenReturn(createToken(
-                        "{\"client_id\":\" archive-service \"}"));
+                        "{\"client_id\":\" test-client \"}"));
 
         assertSame(identity, augment());
     }
@@ -127,7 +127,7 @@ class TokenValidatorAugmentorTest {
     void incorrectClientIdIsDenied() {
         when(tokenCredential.getToken())
                 .thenReturn(createToken(
-                        "{\"client_id\":\"another-service\"}"));
+                        "{\"client_id\":\"another-client\"}"));
 
         assertThrows(ForbiddenException.class, this::augment);
     }
@@ -225,7 +225,7 @@ class TokenValidatorAugmentorTest {
         validator.securityEnabled = false;
         when(tokenCredential.getToken())
                 .thenReturn(createToken(
-                        "{\"client_id\":\"another-service\"}"));
+                        "{\"client_id\":\"another-client\"}"));
 
         assertSame(identity, augment());
     }
@@ -236,7 +236,7 @@ class TokenValidatorAugmentorTest {
 
         when(tokenCredential.getToken())
                 .thenReturn(createToken(
-                        "{\"client_id\":\"another-service\"}"));
+                        "{\"client_id\":\"another-client\"}"));
 
         assertSame(identity, augment());
 
