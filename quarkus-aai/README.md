@@ -31,6 +31,6 @@ public Response getResource() {
 
 ## Token Validation
 
-The `TokenValidatorAugmentor` is used to validate the token received from the OIDC provider. It is started automatically by the Quarkus application and can be disabled by setting the `security.roles.enabled` property to `false` in the `application.properties` file.
+The `TokenValidatorAugmentor` is used to validate the token received from the OIDC provider. It is started automatically by the Quarkus application and can be disabled by setting the `security.roles.enabled` property to `false` in the `application.properties` file. It is intended to be an extra level of custom validation on top of the validation steps that are performed by quarkus's own ODIC extension. 
 
 It checks that the client id contained in the token matches the one configured in the `application.properties` file (see `quarkus.oidc.client-id`) and that the token has not expired.
