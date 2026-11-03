@@ -12,7 +12,7 @@ import io.smallrye.config.WithDefault;
  *
  * mirrors org.javastro.ivoacore.uws.environment.ExecutionPolicy for quarkus configuration purposes.
  */
-@ConfigMapping(prefix = "ivoa.dc")
+@ConfigMapping(prefix = "ivoa.uws.execution")
 public interface UWSExecutionPolicy {
 
     /**
@@ -20,14 +20,14 @@ public interface UWSExecutionPolicy {
      * @return the maximum run time in seconds, or 0 for unlimited.
      */
     @WithDefault("86400")
-    int maxRunTime();
+    long maxRunTime();
 
     /**
      * Returns the default run time for applications in seconds. A value of 0 implies unlimited run times;
      * @return the default run time in seconds, or 0 for unlimited.
      */
     @WithDefault("3600")
-    int defaultRunTime();
+    long defaultRunTime();
     
     /**
      * Returns the period of the checks for overrunning applications.
@@ -43,14 +43,14 @@ public interface UWSExecutionPolicy {
      * @return the default lifetime in seconds.
      */
     @WithDefault("604800")
-    int defaultLifetime();
+    long defaultLifetime();
 
    /**
     * The maximum lifetime that a job record can exist for.
      * @return The maximum time in seconds.
      */
     @WithDefault("604800")
-    int maxLifetime();
+    long maxLifetime();
 
     /**
      * Returns the period of the checks for jobs that should be destroyed.
@@ -60,13 +60,12 @@ public interface UWSExecutionPolicy {
     @WithDefault("3600")
     int destroyPeriod();
 
-
     /**
      * The maximum number of jobs that can run concurrently
      * @return the maximum number of concurrently running jobs.
      */
     @WithDefault("10")
-    int getMaxConcurrent();
+    int maxConcurrent();
 }
 
 
