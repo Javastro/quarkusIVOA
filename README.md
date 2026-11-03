@@ -13,3 +13,16 @@ These are a set of libraries that provide a framework for implementing IVOA prot
 implementation("org.javastro.ivoa.core.quarkus:quarkus-tap-lib:0.9.0")
 implementation("org.javastro.ivoa.core.quarkus:quarkus-config:0.1.0")
 ```
+
+## Notes
+
+### quarkus-tap-lib
+
+when using the tap library you will need to add the following to your `application.properties` so that quarkus can see the annotations in the library at build time, and resolve the library elements properly.
+```properties
+# quarkus-tap-lib contains base JAX-RS/CDI resource classes with interceptor annotations
+# such as @Transactional. Index it so Quarkus can see those annotations at build time.
+quarkus.index-dependency.quarkus-tap-lib.group-id=org.javastro.ivoa.core.quarkus
+quarkus.index-dependency.quarkus-tap-lib.artifact-id=quarkus-tap-lib
+
+```
