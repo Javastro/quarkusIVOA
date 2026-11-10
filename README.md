@@ -13,6 +13,7 @@ These are a set of libraries that provide a framework for implementing IVOA prot
 implementation("org.javastro.ivoa.core.quarkus:quarkus-tap-lib:0.9.1")
 implementation("org.javastro.ivoa.core.quarkus:quarkus-config:0.1.1")
 implementation("org.javastro.ivoa.core.quarkus:quarkus-aai:0.1.0")
+implementation("org.javastro.ivoa.core.quarkus:quarkus-uws:0.9.0")
 
 ```
 
