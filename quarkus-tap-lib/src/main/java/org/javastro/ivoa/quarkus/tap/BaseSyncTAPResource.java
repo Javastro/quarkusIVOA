@@ -109,7 +109,7 @@ public abstract class BaseSyncTAPResource {
                         }
                         else if (phase == ExecutionPhase.ERROR)
                         {
-                           return Uni.createFrom().item( buildErrorVOTable(job,null, false));
+                           return Uni.createFrom().item( buildErrorVOTable(job, null, false));
                         }
                         else {
                            return Uni.createFrom().failure(new UWSException("Underlying TAP job completed with unexpected phase " + phase));//TODO could do more sophisticated error handling here based on the phase
@@ -147,7 +147,7 @@ public abstract class BaseSyncTAPResource {
                new ColumnInfo("ERROR", String.class, "TAP error message")
          };
          RowListStarTable table = new RowListStarTable(columns);
-         table.setName("error");
+         table.setName("results");
          if(exception != null) {
             table.addRow(new Object[]{exception.getMessage()});
          }
