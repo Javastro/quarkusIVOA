@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    api("org.javastro.ivoa.core:tap:0.9.3")
+    api("org.javastro.ivoa.core:tap:0.9.4")
     implementation(project(":quarkus-config"))
     implementation("org.javastro.ivoa.core:common:0.9.0")
     implementation("io.quarkus:quarkus-rest")
