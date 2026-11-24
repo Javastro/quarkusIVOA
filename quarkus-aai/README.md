@@ -3,6 +3,15 @@ Quarkus AAI
 
 functionality to deal with AAI beyond the built-in Quarkus abilities.
 
+## Dependencies
+For a quarkus application to use the AAI extension, it must include the following dependencies in its `build.gradle` file:
+
+```gradle
+# Details of IAM groups that allow access to resources
+resource.roles.view=ivoa/app-registry/viewer,ivoa/app-registry/maintainer,ivoa/app-registry/admin
+resource.roles.edit=ivoa/app-registry/maintainer,ivoa/app-registry/admin
+```
+
 
 ## Conditional roles
 A number of roles can be used to control access to the application's resources.
@@ -11,8 +20,12 @@ A number of roles can be used to control access to the application's resources.
 
 ```properties
 # roles that can edit 
-# The key can be any string but the value should be a comma-separated list of OIDC groups
+# The key can be any string, but the value should be a comma-separated list of OIDC groups
 resource.roles.edit=first_oidc_group,second_oidc_group
+
+#Enable or disable security as required, an ideal case for this is to disable it for testing
+%dev.security.roles.enabled=false
+%prod.security.roles.enabled=true
 ```
 
 2. Use the `@ConditionalRolesAllowed` annotation to control access to the resource:
@@ -23,7 +36,7 @@ resource.roles.edit=first_oidc_group,second_oidc_group
 @Post
 @ConditionalRolesAllowed("resource.roles.edit")
 @Transactional
-public Response getResource() {
+public Response submitResource(MyResource resource) {
     // Perform some action that requires the edit role
     // return Response.ok().entity(resource).build(); for example
 }
